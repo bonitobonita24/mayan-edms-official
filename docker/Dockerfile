@@ -24,6 +24,7 @@ RUN set -x \
 && DEBIAN_FRONTEND=noninteractive \
 apt-get update \
 && apt-get install -y --no-install-recommends \
+    apt-utils \
     ca-certificates \
     exiftool \
     fonts-arphic-uming \

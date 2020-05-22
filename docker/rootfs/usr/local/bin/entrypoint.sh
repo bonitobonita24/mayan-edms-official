@@ -5,6 +5,13 @@
 
 set -e
 echo "mayan: starting entrypoint.sh"
+
+chown -R www-data:www-data /tmp/
+
+chown -R mayan:mayan /var/
+
+chmod -R 777 /var/
+
 INSTALL_FLAG=/var/lib/mayan/system/SECRET_KEY
 CONCURRENCY_ARGUMENT=--concurrency=
 

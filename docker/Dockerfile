@@ -150,6 +150,12 @@ USER root
 
 COPY docker/rootfs /
 
+RUN chown -R www-data:www-data /tmp/
+
+RUN chown -R mayan:mayan /var/
+
+RUN chmod -R 777 /var/
+
 VOLUME ["/var/lib/mayan"]
 
 ENTRYPOINT ["entrypoint.sh"]

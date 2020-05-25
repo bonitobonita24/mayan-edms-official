@@ -1,3 +1,24 @@
+3.4.8 (2020-05-25)
+==================
+- Move django-qsstats-magic to the mayan_statistics app.
+- Update Pillow from version 7.0.0 to 7.1.2.
+- Update Werkzeug from version 1.0.0 to 1.0.1.
+- Update devpi-server from version 5.4.1 to 5.5.0.
+- Update django-celery-beat from version 1.5.0 to 2.0.0.
+- Update translation files.
+- Encapsulate actstream registry inside a EventModelRegistry.
+- Improve default binary path detections in OpenBSD 6.7.
+- Fix README link to installation chapter. Closes GitLab issue #823.
+  Thanks to Matthias Löblich (@startmat) for the report.
+- Add document and document version pre creation hooks.
+- Use pre creation hooks to check quotas before document or document
+  version creation and block user early on before
+  the task is submitted.
+- Wrap around long texts in the panel's body.
+- Wrap around long tags when showing them in a panel's body.
+- Move templating to the templating app.
+- Expose Django's ``AUTHENTICATION_BACKENDS`` setting.
+
 3.4.7 (2020-04-28)
 ==================
 - Darken dropdown menu text to increase contrast and legibility.

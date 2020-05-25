@@ -24,7 +24,6 @@ RUN set -x \
 && DEBIAN_FRONTEND=noninteractive \
 apt-get update \
 && apt-get install -y --no-install-recommends \
-    apt-utils \
     ca-certificates \
     exiftool \
     fonts-arphic-uming \
@@ -149,12 +148,6 @@ COPY --from=builder_image --chown=mayan:mayan "${PROJECT_INSTALL_DIR}/" "${PROJE
 USER root
 
 COPY docker/rootfs /
-
-RUN chown -R www-data:www-data /tmp/
-
-RUN chown -R mayan:mayan /var/
-
-RUN chmod -R 777 /var/
 
 VOLUME ["/var/lib/mayan"]
 

@@ -5,13 +5,6 @@
 
 set -e
 echo "mayan: starting entrypoint.sh"
-
-chown -R www-data:www-data /tmp/
-
-chown -R mayan:mayan /var/
-
-chmod -R 777 /var/
-
 INSTALL_FLAG=/var/lib/mayan/system/SECRET_KEY
 CONCURRENCY_ARGUMENT=--concurrency=
 
@@ -27,6 +20,9 @@ export MAYAN_INSTALL_DIR=/opt/mayan-edms
 export MAYAN_PYTHON_BIN_DIR=/opt/mayan-edms/bin/
 export MAYAN_MEDIA_ROOT=/var/lib/mayan
 export MAYAN_SETTINGS_MODULE=${MAYAN_SETTINGS_MODULE:-mayan.settings.production}
+
+# Set DJANGO_SETTINGS_MODULE to MAYAN_SETTINGS_MODULE to avoid two
+# different environments for the setting file.
 export DJANGO_SETTINGS_MODULE=${MAYAN_SETTINGS_MODULE}
 
 export MAYAN_GUNICORN_BIN=${MAYAN_PYTHON_BIN_DIR}gunicorn
@@ -78,6 +74,11 @@ apt_get_install() {
 
 initialsetup() {
     echo "mayan: initialsetup()"
+
+    # Change the owner of the /var/lib/mayan always to allow adding the
+    # initial files. Top level only.
+    chown mayan:mayan ${MAYAN_MEDIA_ROOT}
+
     su mayan -c "${MAYAN_BIN} initialsetup --force --no-dependencies"
 }
 
